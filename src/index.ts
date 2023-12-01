@@ -1,0 +1,1 @@
+require(`./day01/solution.js`).default
