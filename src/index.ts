@@ -1,1 +1,1 @@
-require(`./day01/solution.js`).default
+require(`./day02/solution.js`).default
