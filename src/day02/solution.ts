@@ -34,4 +34,31 @@ const sumOfIds = fs
   })
   .reduce((a, b) => a + b, 0);
 
+
+  const part2 = fs
+  .readFileSync("src/day02/input")
+  .toString("utf-8")
+  .split("\n")
+  .map((line) => {
+    let sets = line.split(":")[1].split(";");
+    return findMax(sets, "red") * findMax(sets, "green") * findMax(sets, "blue");
+  })
+  .reduce((a, b) => a + b, 0);
+
+function findMax(sets: string[], cube_color: string) {
+  let maxColor = 0;
+  sets.forEach(set => {
+    let pairs = set.split(",");
+    pairs.forEach(pair => {
+      let number = pair.trimStart().split(" ")[0];
+      let color = pair.trimStart().split(" ")[1];
+      if (color === cube_color && parseInt(number) > maxColor) {
+        maxColor = parseInt(number);
+      }
+    });
+  });
+  return maxColor;
+}
+
 console.log("Part 1: " + sumOfIds);
+console.log("Part 2: " + part2);
