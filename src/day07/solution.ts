@@ -6,17 +6,8 @@ hands.sort((a, b) => {
   let strengthA = calculateStrength(a.substring(0, 5));
   let strengthB = calculateStrength(b.substring(0, 5));
   if (strengthA === strengthB) {
-    // console.log(
-    //   "equal strength: " +
-    //     strengthA +
-    //     "a:" +
-    //     a.substring(0, 5) +
-    //     ", b:" +
-    //     b.substring(0, 5)
-    // );
     for (let i = 0; i < a.length; i++) {
       let result = compareCards(a[i], b[i]);
-      // console.log("i: " + i + ", result: " + result);
       if (result !== 0) {
         return result;
       }
@@ -25,10 +16,7 @@ hands.sort((a, b) => {
   return strengthA - strengthB;
 });
 let totalWinnings = hands
-  .map((hand) => {
-    console.log(hand);
-    return parseInt(hand.split(" ")[1]);
-  })
+  .map((hand) => parseInt(hand.split(" ")[1]))
   .map((bid, index) => bid * (index + 1))
   .reduce((a, b) => a + b, 0);
 
@@ -36,9 +24,7 @@ console.log("Part 1: " + totalWinnings);
 
 function calculateStrength(hand: string) {
   const cards = hand.split("");
-  console.log(cards);
   const cards_set = new Set(cards);
-  console.log(cards_set);
   // high card
   if (cards_set.size === 5) {
     return 1;
@@ -56,7 +42,6 @@ function calculateStrength(hand: string) {
     for (let card of cards_set) {
       count.push(cards.filter((c) => c === card).length);
     }
-    // console.log(count);
     if (count.includes(3)) {
       // three of a kind
       return 4;
